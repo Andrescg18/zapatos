@@ -1,0 +1,895 @@
+<!-- Embers background effect -->
+<div class="ember-container">
+  <div class="ember" style="left: 5%; animation-delay: 0s; animation-duration: 6s;"></div>
+  <div class="ember" style="left: 15%; animation-delay: 1.5s; animation-duration: 7s;"></div>
+  <div class="ember" style="left: 25%; animation-delay: 0.5s; animation-duration: 5s;"></div>
+  <div class="ember" style="left: 35%; animation-delay: 3s; animation-duration: 8s;"></div>
+  <div class="ember" style="left: 45%; animation-delay: 2s; animation-duration: 6s;"></div>
+  <div class="ember" style="left: 55%; animation-delay: 4s; animation-duration: 9s;"></div>
+  <div class="ember" style="left: 65%; animation-delay: 1s; animation-duration: 5s;"></div>
+  <div class="ember" style="left: 75%; animation-delay: 2.5s; animation-duration: 7s;"></div>
+  <div class="ember" style="left: 85%; animation-delay: 0.8s; animation-duration: 6s;"></div>
+  <div class="ember" style="left: 95%; animation-delay: 3.5s; animation-duration: 8s;"></div>
+  <div class="ember" style="left: 12%; animation-delay: 5s; animation-duration: 7.5s;"></div>
+  <div class="ember" style="left: 28%; animation-delay: 2.2s; animation-duration: 6.5s;"></div>
+  <div class="ember" style="left: 48%; animation-delay: 1.8s; animation-duration: 7s;"></div>
+  <div class="ember" style="left: 68%; animation-delay: 4.5s; animation-duration: 5.5s;"></div>
+  <div class="ember" style="left: 88%; animation-delay: 2.9s; animation-duration: 8.5s;"></div>
+</div>
+
+<!-- SVG Fire Warp Filter -->
+<svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+  <defs>
+    <filter id="fire-warp">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.05" numOctaves="2" result="noise">
+        <animate attributeName="seed" from="1" to="100" dur="8s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
+
+<!-- Top Navigation Header -->
+<header class="glass">
+  <div class="container header-container">
+    <div class="logo-section" (click)="resetNavigation()" style="cursor: pointer;">
+      <img src="logo-gta.png" alt="Logo UrbanStyle" class="logo-img">
+    </div>
+
+    <div class="nav-actions">
+
+      <!-- WhatsApp Header Button -->
+      <a [href]="'https://wa.me/' + whatsappNumber" target="_blank" class="icon-btn" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+          </path>
+          <path
+            d="M17 14.5c-.3-.2-1.7-.9-1.9-1-.2-.1-.4-.2-.5 0-.2.2-.6.7-.8.9-.1.2-.3.2-.6.1-1.3-.7-2.3-1.7-3-3-.1-.3 0-.5.2-.6.2-.2.5-.5.7-.8.1-.1.1-.3 0-.5-.1-.2-.8-1.8-1-2-.1-.4-.3-.3-.5-.3h-.4c-.2 0-.5.1-.8.4C8 8.2 7.5 9 7.5 10c0 1 .4 2 1.2 3.1 1.7 2.3 3.9 3.9 6.5 4.7.7.2 1.3.3 2 .1.6-.1 1.2-.5 1.5-1.1.1-.3.1-.6 0-.8l-1.7-1.5z">
+          </path>
+        </svg>
+      </a>
+
+      <!-- Shopping Cart Dynamic Indicator (Extremo derecho del Navbar) -->
+      <button class="nav-cart-btn" (click)="toggleCart()" aria-label="Ver Carrito de Compras"
+        [class.has-items]="cartTotalCount() > 0" title="Ver carrito">
+        <div class="nav-cart-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          @if (cartTotalCount() > 0) {
+          <span class="nav-cart-badge">{{ cartTotalCount() }}</span>
+          }
+        </div>
+        <span class="nav-cart-text">Carrito ({{ cartTotalCount() }})</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="animate-fade-in">
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- GTA Graffiti Tags — Hero -->
+    <div class="graffiti-hero-left" aria-hidden="true">
+      <img src="tag-grove-green-purple.png" alt="" class="graffiti-tag" />
+    </div>
+    <div class="graffiti-hero-right" aria-hidden="true">
+      <img src="tag-grove-white.png" alt="" class="graffiti-tag" />
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <div class="hero-titulo-img-wrapper">
+          <img src="titulo-gta.png" alt="UrbanStyle" class="hero-titulo-img" />
+        </div>
+        <p class="hero-subtitle">Calzado <strong>100% importado</strong> de las mejores marcas del mundo. Mayor calidad,
+          mejores precios — pide tu par directo por WhatsApp en segundos.</p>
+        <a href="#catalogo" class="cta-btn">
+          Explorar Marcas
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+      <div class="hero-visual">
+        <!-- Flame ring border -->
+        <div class="flame-ring">
+          <div class="flame-core">
+            <img [src]="heroImages[heroIndex()]" [class.hero-img-fading]="heroFading()" alt="UrbanStyle Sneaker"
+              class="hero-img">
+          </div>
+        </div>
+        <!-- Dots indicator -->
+        <div class="hero-dots">
+          @for (img of heroImages; track $index) {
+          <span class="hero-dot" [class.active]="heroIndex() === $index"></span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Moving Fire Divider -->
+    <div class="fire-divider-container">
+      <svg class="fire-divider-svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path class="fire-path fire-back"
+          d="M 0 120 C 20 80, 30 40, 40 20 C 50 0, 70 10, 60 40 C 50 65, 75 90, 90 120 C 110 85, 130 50, 140 30 C 150 10, 170 20, 160 50 C 150 75, 175 95, 190 120 C 210 90, 220 55, 230 35 C 240 15, 260 25, 250 55 C 240 80, 265 100, 280 120 C 300 80, 310 40, 320 20 C 330 0, 350 10, 340 40 C 330 65, 355 90, 370 120 C 390 85, 410 50, 420 30 C 430 10, 450 20, 440 50 C 430 75, 455 95, 470 120 C 490 90, 500 55, 510 35 C 520 15, 540 25, 530 55 C 520 80, 545 100, 560 120 C 580 80, 590 40, 600 20 C 610 0, 630 10, 620 40 C 610 65, 635 90, 650 120 C 670 85, 690 50, 700 30 C 710 10, 730 20, 720 50 C 710 75, 735 95, 750 120 C 770 90, 780 55, 790 35 C 800 15, 820 25, 810 55 C 800 80, 825 100, 840 120 C 860 80, 870 40, 880 20 C 890 0, 910 10, 900 40 C 890 65, 915 90, 930 120 C 950 85, 970 50, 980 30 C 990 10, 1010 20, 1000 50 C 990 75, 1015 95, 1030 120 C 1050 90, 1060 55, 1070 35 C 1080 15, 1100 25, 1090 55 C 1080 80, 1105 100, 1120 120 C 1140 80, 1150 40, 1160 20 C 1170 0, 1190 10, 1180 40 C 1170 65, 1195 90, 1210 120 C 1230 85, 1250 50, 1260 30 C 1270 10, 1290 20, 1280 50 C 1270 75, 1295 95, 1310 120 C 1330 90, 1340 55, 1350 35 C 1360 15, 1380 25, 1370 55 C 1360 80, 1385 100, 1400 120 C 1410 90, 1420 60, 1430 40 C 1440 20, 1440 120, 1440 120 L 1440 120 Z" />
+        <path class="fire-path fire-mid"
+          d="M 0 120 C 20 95, 40 70, 50 50 C 60 30, 75 40, 70 65 C 65 90, 80 105, 90 120 C 110 95, 130 70, 140 50 C 150 30, 165 40, 160 65 C 155 90, 170 105, 180 120 C 200 95, 220 70, 230 50 C 240 30, 255 40, 250 65 C 245 90, 260 105, 270 120 C 290 95, 310 70, 320 50 C 330 30, 345 40, 340 65 C 335 90, 350 105, 360 120 C 380 95, 400 70, 410 50 C 420 30, 435 40, 430 65 C 425 90, 440 105, 450 120 C 470 95, 490 70, 500 50 C 510 30, 525 40, 520 65 C 515 90, 530 105, 540 120 C 560 95, 580 70, 590 50 C 600 30, 615 40, 610 65 C 605 90, 620 105, 630 120 C 650 95, 670 70, 680 50 C 690 30, 705 40, 700 65 C 695 90, 710 105, 720 120 C 740 95, 760 70, 770 50 C 780 30, 795 40, 790 65 C 785 90, 800 105, 810 120 C 830 95, 850 70, 860 50 C 870 30, 885 40, 880 65 C 875 90, 890 105, 900 120 C 920 95, 940 70, 950 50 C 960 30, 975 40, 970 65 C 965 90, 980 105, 990 120 C 1010 95, 1030 70, 1040 50 C 1050 30, 1065 40, 1060 65 C 1055 90, 1070 105, 1080 120 C 1100 95, 1120 70, 1130 50 C 1140 30, 1155 40, 1150 65 C 1145 90, 1160 105, 1170 120 C 1190 95, 1210 70, 1220 50 C 1230 30, 1245 40, 1240 65 C 1235 90, 1250 105, 1260 120 C 1280 95, 1300 70, 1310 50 C 1320 30, 1335 40, 1330 65 C 1325 90, 1340 105, 1350 120 C 1370 95, 1390 70, 1400 50 C 1410 30, 1425 40, 1420 65 C 1415 90, 1430 105, 1440 120 L 1440 120 Z" />
+        <path class="fire-path fire-front"
+          d="M 0 120 C 15 105, 30 90, 40 75 C 50 60, 65 70, 60 85 C 55 100, 70 110, 80 120 C 95 105, 110 90, 120 75 C 130 60, 145 70, 140 85 C 135 100, 150 110, 160 120 C 175 105, 190 90, 200 75 C 210 60, 225 70, 220 85 C 215 100, 230 110, 240 120 C 255 105, 270 90, 280 75 C 290 60, 305 70, 300 85 C 295 100, 310 110, 320 120 C 335 105, 350 90, 360 75 C 370 60, 385 70, 380 85 C 375 100, 390 110, 400 120 C 415 105, 430 90, 440 75 C 450 60, 465 70, 460 85 C 455 100, 470 110, 480 120 C 495 105, 510 90, 520 75 C 530 60, 545 70, 540 85 C 535 100, 550 110, 560 120 C 575 105, 590 90, 600 75 C 610 60, 625 70, 620 85 C 615 100, 630 110, 640 120 C 655 105, 670 90, 680 75 C 690 60, 705 70, 700 85 C 695 100, 710 110, 720 120 C 735 105, 750 90, 760 75 C 770 60, 785 70, 780 85 C 775 100, 790 110, 800 120 C 815 105, 830 90, 840 75 C 850 60, 865 70, 860 85 C 855 100, 870 110, 880 120 C 895 105, 910 90, 920 75 C 930 60, 945 70, 940 85 C 935 100, 950 110, 960 120 C 975 105, 990 90, 1000 75 C 1010 60, 1025 70, 1020 85 C 1015 100, 1030 110, 1040 120 C 1055 105, 1070 90, 1080 75 C 1090 60, 1105 70, 1100 85 C 1095 100, 1110 110, 1120 120 C 1135 105, 1150 90, 1160 75 C 1170 60, 1185 70, 1180 85 C 1175 100, 1190 110, 1200 120 C 1215 105, 1230 90, 1240 75 C 1250 60, 1265 70, 1260 85 C 1255 100, 1270 110, 1280 120 C 1295 105, 1310 90, 1320 75 C 1330 60, 1345 70, 1340 85 C 1335 100, 1350 110, 1360 120 C 1375 105, 1390 90, 1400 75 C 1410 60, 1425 70, 1420 85 C 1415 100, 1430 110, 1440 120 L 1440 120 Z" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Trust Badges Strip -->
+  <div class="trust-strip">
+    <div class="trust-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>Calzado 100% Importado</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+      <span>Marcas Originales Garantizadas</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>Mejor Calidad al Mejor Precio</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      <span>Entrega Rápida por WhatsApp</span>
+    </div>
+  </div>
+
+  <!-- Catalog Section -->
+  <section id="catalogo" class="container catalog-section">
+    <!-- GTA Graffiti Tags — Catalog -->
+    <div class="graffiti-catalog-tl" aria-hidden="true">
+      <img src="tag-ballas-purple.png" alt="" class="graffiti-tag" />
+    </div>
+    <div class="graffiti-catalog-br" aria-hidden="true">
+      <img src="tag-grove-green-mid.png" alt="" class="graffiti-tag" />
+    </div>
+    <!-- Breadcrumbs & Search Area -->
+    <div class="nav-control-panel glass">
+      <!-- Breadcrumbs Path -->
+      <div class="breadcrumbs">
+        <button class="breadcrumb-link" (click)="resetNavigation()">Inicio</button>
+        @if (selectedCategory() === 'camisetas') {
+        <span class="breadcrumb-separator">/</span>
+        <button class="breadcrumb-link active" disabled>👕 Camisetas Exclusivas</button>
+        } @else {
+        @if (selectedBrand()) {
+        <span class="breadcrumb-separator">/</span>
+        <button class="breadcrumb-link"
+          (click)="currentLevel.set(subcategoriesList().length > 0 ? 'subcategories' : 'products'); selectedSubcategory.set(null)">
+          {{ selectedBrand() }}
+        </button>
+        }
+        @if (selectedSubcategory()) {
+        <span class="breadcrumb-separator">/</span>
+        <button class="breadcrumb-link active" disabled>{{ selectedSubcategory() }}</button>
+        }
+        }
+      </div>
+
+      <!-- Category Filter Segment (Zapatos vs Camisetas) -->
+      <div class="category-filter">
+        <button class="category-btn" [class.active]="selectedCategory() === 'todos'" (click)="selectCategory('todos')"
+          title="Ver todo el catálogo">
+          Todos
+        </button>
+        <button class="category-btn" [class.active]="selectedCategory() === 'zapatos'"
+          (click)="selectCategory('zapatos')" title="Ver solo zapatos y tenis">
+          <span class="cat-icon">👟</span> Zapatos
+        </button>
+        <button class="category-btn" [class.active]="selectedCategory() === 'camisetas'"
+          (click)="selectCategory('camisetas')" title="Ver colección de camisetas">
+          <span class="cat-icon">👕</span> Camisetas
+        </button>
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-box">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" class="search-input"
+          [placeholder]="selectedCategory() === 'camisetas' ? 'Buscar camisetas exclusivas...' : (selectedCategory() === 'zapatos' ? 'Buscar tenis y zapatos...' : 'Buscar tenis o camisetas...')"
+          [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" aria-label="Buscar calzado o ropa">
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    @if (currentLevel() !== 'brands' && !searchQuery()) {
+    <button class="back-navigation-btn" (click)="goBack()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Volver a la carpeta anterior
+    </button>
+    }
+
+    <!-- Top Featured Row -->
+    @if (currentLevel() === 'brands' && selectedCategory() !== 'camisetas' && !searchQuery() &&
+    featuredProductsTop().length > 0) {
+    <div class="folder-section-title">Modelos Destacados</div>
+    <div class="featured-scroll-row">
+      @for (product of featuredProductsTop(); track product.id) {
+      <div class="product-card glow-card featured-mini-card" (click)="openProductDetails(product)">
+        <div class="card-img-container" style="height: 160px; padding: 0.5rem; cursor: pointer;">
+          @if (product.featured) {
+          <span class="badge-featured">🔥 Destacado</span>
+          }
+          <img [src]="product.image" [alt]="product.name" class="card-img" loading="lazy">
+        </div>
+        <div class="card-content" style="padding: 0.75rem;">
+          <span class="brand-tag" style="font-size: 0.7rem;">{{ product.brand }}</span>
+          <h3 class="product-title" style="font-size: 0.9rem; margin: 0.25rem 0; cursor: pointer;">{{ product.name }}
+          </h3>
+          <div class="mini-card-footer">
+            <span class="price-tag" style="font-size: 0.85rem;">${{ product.price | number:'1.0-0' }} COP</span>
+            <button class="btn-mini-cart" (click)="addToCart(product, 1, false); $event.stopPropagation()"
+              title="Agregar al carrito">
+              + 🛒
+            </button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- LEVEL 1: Brands Grid -->
+    @if (currentLevel() === 'brands' && selectedCategory() !== 'camisetas' && !searchQuery()) {
+    <div class="folder-section-title">Selecciona una Marca de Calzado</div>
+    <div class="folder-grid">
+      @for (brand of brandsList(); track brand.name) {
+      <div class="folder-card glow-card" (click)="selectBrand(brand.name)">
+        <div class="folder-img-container">
+          <img [src]="brand.coverImage" [alt]="brand.name" class="folder-img" loading="lazy">
+          <span class="items-badge">{{ brand.totalItems }} referencias</span>
+        </div>
+        <div class="folder-info">
+          <h3 class="folder-name" style="display: flex; align-items: center; gap: 0.5rem;">
+            {{ brand.name }}
+            @if (brandLogos[brand.name]) {
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path [attr.d]="brandLogos[brand.name]"></path>
+            </svg>
+            }
+          </h3>
+          <span class="folder-type">{{ brand.hasSubfolders ? 'Ver carpetas' : 'Ver modelos' }} →</span>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- LEVEL 2: Subcategories Grid -->
+    @if (currentLevel() === 'subcategories' && !searchQuery()) {
+    <div class="folder-section-title">Carpetas de {{ selectedBrand() }}</div>
+    <div class="folder-grid">
+      @for (sub of subcategoriesList(); track sub.name) {
+      <div class="folder-card glow-card" (click)="selectSubcategory(sub.name)">
+        <div class="folder-img-container">
+          <img [src]="sub.coverImage" [alt]="sub.name" class="folder-img" loading="lazy">
+          <span class="items-badge">{{ sub.totalItems }} modelos</span>
+        </div>
+        <div class="folder-info">
+          <h3 class="folder-name">{{ sub.name }}</h3>
+          <span class="folder-type">Ver modelos →</span>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
+    <!-- LEVEL 3: Product Grid (Shoes / Shirts) or Search Results -->
+    @if (currentLevel() === 'products' || searchQuery()) {
+    <div class="folder-section-title">
+      @if (searchQuery()) {
+      Resultados de búsqueda para: "{{ searchQuery() }}"
+      } @else if (selectedCategory() === 'camisetas') {
+      👕 Colección Exclusiva de Camisetas (10 Diseños Disponibles)
+      } @else {
+      Modelos en: {{ selectedBrand() }} {{ selectedSubcategory() ? '/ ' + selectedSubcategory() : '' }}
+      }
+    </div>
+
+    <div class="products-grid">
+      @for (product of productsToShow(); track product.id) {
+      <div class="product-card glow-card">
+        <div class="card-img-container" (click)="openProductDetails(product)" style="cursor: pointer;">
+          @if (product.featured) {
+          <span class="badge-featured">⭐ Destacado</span>
+          }
+          <img [src]="product.image" [alt]="product.name" class="card-img" loading="lazy">
+        </div>
+
+        <div class="card-content">
+          <div class="card-header-info">
+            <span class="brand-tag">{{ product.brand }}</span>
+            @if (product.category === 'Shirt') {
+            <span class="badge-tag-shirt">👕 Camiseta</span>
+            }
+          </div>
+
+          <h3 class="product-title" (click)="openProductDetails(product)" style="cursor: pointer;">{{ product.name }}
+          </h3>
+          <p class="product-description">{{ getProductDescription(product) }}</p>
+
+          <div class="card-footer">
+            <span class="price-tag">${{ product.price | number:'1.0-0' }} COP</span>
+            <div class="card-action-btns">
+              <button class="btn-card-details" (click)="openProductDetails(product)">
+                Detalles
+              </button>
+              <button class="btn-card-add-cart" (click)="addToCart(product, 1, false); $event.stopPropagation()"
+                title="Agregar al carrito">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>+ Carrito</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      } @empty {
+      <div class="no-results">
+        <div class="no-results-icon">{{ selectedCategory() === 'camisetas' ? '👕' : '👟' }}</div>
+        <h2>{{ selectedCategory() === 'camisetas' ? 'No encontramos camisetas' : 'No encontramos tenis en esta carpeta'
+          }}</h2>
+        <p>Prueba buscando otra palabra en la barra de búsqueda superior.</p>
+      </div>
+      }
+    </div>
+    }
+  </section>
+</main>
+
+<!-- Details Modal -->
+<div class="modal-overlay" [class.open]="selectedProductForModal() !== null" (click)="closeProductDetails()">
+  @if (selectedProductForModal(); as product) {
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closeProductDetails()" aria-label="Cerrar modal">×</button>
+
+    <div class="modal-grid">
+      <div class="modal-visual">
+        <!-- Zoom viewport -->
+        <div class="zoom-viewport" [class.grabbing]="zoomLevel() > 100" (mousedown)="onDragStart($event)"
+          (mousemove)="onDragMove($event)" (mouseup)="onDragEnd()" (mouseleave)="onDragEnd()"
+          (touchstart)="onDragStart($event)" (touchmove)="onDragMove($event)" (touchend)="onDragEnd()">
+          <img
+            [src]="product.images && product.images.length > 0 ? product.images[selectedImageIndex()] : product.image"
+            [alt]="product.name" class="modal-shoe-img zoom-img" [style.transform]="getZoomTransform()"
+            draggable="false">
+        </div>
+
+        <!-- Zoom controls bar -->
+        <div class="zoom-controls">
+          <button class="zoom-btn" (click)="zoomLevel.set(Math.max(100, zoomLevel() - 25))" title="Alejar">−</button>
+          <div class="zoom-slider-wrap">
+            <input type="range" class="zoom-slider" min="100" max="400" step="25" [value]="zoomLevel()"
+              (input)="onZoomSliderChange($event)">
+            <span class="zoom-pct">{{ zoomLevel() }}%</span>
+          </div>
+          <button class="zoom-btn" (click)="zoomLevel.set(Math.min(400, zoomLevel() + 25))" title="Acercar">+</button>
+          <button class="zoom-reset-btn" (click)="resetZoom()" title="Restablecer">↺</button>
+        </div>
+
+        @if (product.images && product.images.length > 1) {
+        <div class="modal-gallery">
+          @for (img of product.images; track $index) {
+          <div class="gallery-thumbnail" [class.active]="selectedImageIndex() === $index"
+            (click)="selectedImageIndex.set($index); resetZoom()">
+            <img [src]="img" [alt]="product.name + ' vista ' + ($index + 1)">
+          </div>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="modal-info">
+        <div>
+          <div class="modal-brand-gender-wrapper">
+            <span class="modal-brand">{{ product.brand }}</span>
+          </div>
+          <h2 class="modal-title">{{ product.name }}</h2>
+        </div>
+
+        <div class="modal-price">${{ product.price | number:'1.0-0' }} COP</div>
+
+        <p class="modal-description">{{ getProductDescription(product) }}</p>
+
+        <!-- Modal Cart & Checkout Controls -->
+        <div class="modal-cart-panel">
+          <div class="modal-qty-selector">
+            <span class="qty-label">Cantidad:</span>
+            <div class="stepper-box">
+              <button class="modal-step-btn" (click)="updateModalQuantity(-1)"
+                [disabled]="modalQuantity() <= 1">−</button>
+              <span class="modal-step-val">{{ modalQuantity() }}</span>
+              <button class="modal-step-btn" (click)="updateModalQuantity(1)">+</button>
+            </div>
+            <div class="modal-subtotal-text">
+              Total: <strong>${{ (product.price * modalQuantity()) | number:'1.0-0' }} COP</strong>
+            </div>
+          </div>
+
+          <div class="modal-action-buttons">
+            <button class="modal-btn-cart" (click)="addModalProductToCart(true)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span>Agregar al Carrito</span>
+            </button>
+            <button class="modal-add-btn modal-btn-wsp" (click)="sendWhatsAppOrder()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                </path>
+                <path
+                  d="M17 14.5c-.3-.2-1.7-.9-1.9-1-.2-.1-.4-.2-.5 0-.2.2-.6.7-.8.9-.1.2-.3.2-.6.1-1.3-.7-2.3-1.7-3-3-.1-.3 0-.5.2-.6.2-.2.5-.5.7-.8.1-.1.1-.3 0-.5-.1-.2-.8-1.8-1-2-.1-.4-.3-.3-.5-.3h-.4c-.2 0-.5.1-.8.4C8 8.2 7.5 9 7.5 10c0 1 .4 2 1.2 3.1 1.7 2.3 3.9 3.9 6.5 4.7.7.2 1.3.3 2 .1.6-.1 1.2-.5 1.5-1.1.1-.3.1-.6 0-.8l-1.7-1.5z">
+                </path>
+              </svg>
+              <span>Pedir por WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<!-- Floating WhatsApp Contact Card (GTA Style) -->
+<div class="whatsapp-floating-card" (click)="contactGeneralWhatsApp()" role="button" aria-label="Contactar por WhatsApp"
+  title="¿Tienes preguntas? Escríbenos">
+  <div class="wsp-card-inner">
+    <div class="wsp-avatar-wrapper">
+      <img src="ft-perfil.png" alt="Contacto UrbanStyle" class="wsp-avatar">
+      <span class="wsp-online-dot"></span>
+    </div>
+    <div class="wsp-card-text">
+      <span class="wsp-name">UrbanStyle</span>
+      <span class="wsp-status">En línea · WhatsApp</span>
+    </div>
+    <div class="wsp-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+        </path>
+        <path
+          d="M17 14.5c-.3-.2-1.7-.9-1.9-1-.2-.1-.4-.2-.5 0-.2.2-.6.7-.8.9-.1.2-.3.2-.6.1-1.3-.7-2.3-1.7-3-3-.1-.3 0-.5.2-.6.2-.2.5-.5.7-.8.1-.1.1-.3 0-.5-.1-.2-.8-1.8-1-2-.1-.4-.3-.3-.5-.3h-.4c-.2 0-.5.1-.8.4C8 8.2 7.5 9 7.5 10c0 1 .4 2 1.2 3.1 1.7 2.3 3.9 3.9 6.5 4.7.7.2 1.3.3 2 .1.6-.1 1.2-.5 1.5-1.1.1-.3.1-.6 0-.8l-1.7-1.5z">
+        </path>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <!-- GTA Graffiti Tags — Footer -->
+  <div class="graffiti-footer-left" aria-hidden="true">
+    <img src="tag-grove-green-purple.png" alt="" class="graffiti-tag" />
+  </div>
+  <div class="graffiti-footer-right" aria-hidden="true">
+    <img src="tag-ballas-purple.png" alt="" class="graffiti-tag" />
+  </div>
+  <div class="footer-fire-divider">
+    <svg class="fire-divider-svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path class="fire-path fire-back"
+        d="M 0 120 C 20 80, 30 40, 40 20 C 50 0, 70 10, 60 40 C 50 65, 75 90, 90 120 C 110 85, 130 50, 140 30 C 150 10, 170 20, 160 50 C 150 75, 175 95, 190 120 C 210 90, 220 55, 230 35 C 240 15, 260 25, 250 55 C 240 80, 265 100, 280 120 C 300 80, 310 40, 320 20 C 330 0, 350 10, 340 40 C 330 65, 355 90, 370 120 C 390 85, 410 50, 420 30 C 430 10, 450 20, 440 50 C 430 75, 455 95, 470 120 C 490 90, 500 55, 510 35 C 520 15, 540 25, 530 55 C 520 80, 545 100, 560 120 C 580 80, 590 40, 600 20 C 610 0, 630 10, 620 40 C 610 65, 635 90, 650 120 C 670 85, 690 50, 700 30 C 710 10, 730 20, 720 50 C 710 75, 735 95, 750 120 C 770 90, 780 55, 790 35 C 800 15, 820 25, 810 55 C 800 80, 825 100, 840 120 C 860 80, 870 40, 880 20 C 890 0, 910 10, 900 40 C 890 65, 915 90, 930 120 C 950 85, 970 50, 980 30 C 990 10, 1010 20, 1000 50 C 990 75, 1015 95, 1030 120 C 1050 90, 1060 55, 1070 35 C 1080 15, 1100 25, 1090 55 C 1080 80, 1105 100, 1120 120 C 1140 80, 1150 40, 1160 20 C 1170 0, 1190 10, 1180 40 C 1170 65, 1195 90, 1210 120 C 1230 85, 1250 50, 1260 30 C 1270 10, 1290 20, 1280 50 C 1270 75, 1295 95, 1310 120 C 1330 90, 1340 55, 1350 35 C 1360 15, 1380 25, 1370 55 C 1360 80, 1385 100, 1400 120 C 1410 90, 1420 60, 1430 40 C 1440 20, 1440 120, 1440 120 L 1440 120 Z" />
+      <path class="fire-path fire-mid"
+        d="M 0 120 C 20 95, 40 70, 50 50 C 60 30, 75 40, 70 65 C 65 90, 80 105, 90 120 C 110 95, 130 70, 140 50 C 150 30, 165 40, 160 65 C 155 90, 170 105, 180 120 C 200 95, 220 70, 230 50 C 240 30, 255 40, 250 65 C 245 90, 260 105, 270 120 C 290 95, 310 70, 320 50 C 330 30, 345 40, 340 65 C 335 90, 350 105, 360 120 C 380 95, 400 70, 410 50 C 420 30, 435 40, 430 65 C 425 90, 440 105, 450 120 C 470 95, 490 70, 500 50 C 510 30, 525 40, 520 65 C 515 90, 530 105, 540 120 C 560 95, 580 70, 590 50 C 600 30, 615 40, 610 65 C 605 90, 620 105, 630 120 C 650 95, 670 70, 680 50 C 690 30, 705 40, 700 65 C 695 90, 710 105, 720 120 C 740 95, 760 70, 770 50 C 780 30, 795 40, 790 65 C 785 90, 800 105, 810 120 C 830 95, 850 70, 860 50 C 870 30, 885 40, 880 65 C 875 90, 890 105, 900 120 C 920 95, 940 70, 950 50 C 960 30, 975 40, 970 65 C 965 90, 980 105, 990 120 C 1010 95, 1030 70, 1040 50 C 1050 30, 1065 40, 1060 65 C 1055 90, 1070 105, 1080 120 C 1100 95, 1120 70, 1130 50 C 1140 30, 1155 40, 1150 65 C 1145 90, 1160 105, 1170 120 C 1190 95, 1210 70, 1220 50 C 1230 30, 1245 40, 1240 65 C 1235 90, 1250 105, 1260 120 C 1280 95, 1300 70, 1310 50 C 1320 30, 1335 40, 1330 65 C 1325 90, 1340 105, 1350 120 C 1370 95, 1390 70, 1400 50 C 1410 30, 1425 40, 1420 65 C 1415 90, 1430 105, 1440 120 L 1440 120 Z" />
+      <path class="fire-path fire-front"
+        d="M 0 120 C 15 105, 30 90, 40 75 C 50 60, 65 70, 60 85 C 55 100, 70 110, 80 120 C 95 105, 110 90, 120 75 C 130 60, 145 70, 140 85 C 135 100, 150 110, 160 120 C 175 105, 190 90, 200 75 C 210 60, 225 70, 220 85 C 215 100, 230 110, 240 120 C 255 105, 270 90, 280 75 C 290 60, 305 70, 300 85 C 295 100, 310 110, 320 120 C 335 105, 350 90, 360 75 C 370 60, 385 70, 380 85 C 375 100, 390 110, 400 120 C 415 105, 430 90, 440 75 C 450 60, 465 70, 460 85 C 455 100, 470 110, 480 120 C 495 105, 510 90, 520 75 C 530 60, 545 70, 540 85 C 535 100, 550 110, 560 120 C 575 105, 590 90, 600 75 C 610 60, 625 70, 620 85 C 615 100, 630 110, 640 120 C 655 105, 670 90, 680 75 C 690 60, 705 70, 700 85 C 695 100, 710 110, 720 120 C 735 105, 750 90, 760 75 C 770 60, 785 70, 780 85 C 775 100, 790 110, 800 120 C 815 105, 830 90, 840 75 C 850 60, 865 70, 860 85 C 855 100, 870 110, 880 120 C 895 105, 910 90, 920 75 C 930 60, 945 70, 940 85 C 935 100, 950 110, 960 120 C 975 105, 990 90, 1000 75 C 1010 60, 1025 70, 1020 85 C 1015 100, 1030 110, 1040 120 C 1055 105, 1070 90, 1080 75 C 1090 60, 1105 70, 1100 85 C 1095 100, 1110 110, 1120 120 C 1135 105, 1150 90, 1160 75 C 1170 60, 1185 70, 1180 85 C 1175 100, 1190 110, 1200 120 C 1215 105, 1230 90, 1240 75 C 1250 60, 1265 70, 1260 85 C 1255 100, 1270 110, 1280 120 C 1295 105, 1310 90, 1320 75 C 1330 60, 1345 70, 1340 85 C 1335 100, 1350 110, 1360 120 C 1375 105, 1390 90, 1400 75 C 1410 60, 1425 70, 1420 85 C 1415 100, 1430 110, 1440 120 L 1440 120 Z" />
+    </svg>
+  </div>
+  <div class="container">
+    <div class="footer-logo">
+      <img src="logo-gta.png" alt="Logo UrbanStyle" class="footer-logo-img">
+    </div>
+    <p>Tu catálogo de sneakers y ropa urbana en Colombia.</p>
+    <p style="margin: 1rem 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem;">
+      <a [href]="'https://wa.me/' + whatsappNumber" target="_blank"
+        style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        WhatsApp Ventas
+      </a>
+      <span>|</span>
+      <a [href]="instagramUrl" target="_blank" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        Instagram
+      </a>
+      <span>|</span>
+      <a [href]="facebookUrl" target="_blank" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        Facebook
+      </a>
+      <span>|</span>
+      <a [href]="tiktokUrl" target="_blank" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+        TikTok
+      </a>
+    </p>
+    <p>&copy; 2026 UrbanStyle. Todos los derechos reservados.</p>
+    <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-muted);">
+      Hacemos envíos a todo el país. Soporte inmediato a través de WhatsApp.
+    </p>
+  </div>
+</footer>
+
+<!-- ==========================================
+     LATERAL DRAWER / CARRITO DE COMPRAS DESPLEGABLE
+     ========================================== -->
+<div class="cart-drawer-overlay" [class.open]="isCartOpen()" (click)="closeCart()">
+  <aside class="cart-drawer" [class.open]="isCartOpen()" (click)="$event.stopPropagation()">
+    <!-- Header del Carrito -->
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title-group">
+        <div class="cart-icon-flame">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <div>
+          <h3>Tu Carrito</h3>
+          <span class="cart-items-subtitle">{{ cartTotalCount() }} {{ cartTotalCount() === 1 ? 'producto añadido' :
+            'productos añadidos' }}</span>
+        </div>
+      </div>
+      <button class="cart-close-btn" (click)="closeCart()" aria-label="Cerrar carrito">✕</button>
+    </div>
+
+    <!-- Banner Mercado Pago Sandbox -->
+    <div class="cart-sandbox-card">
+      <div class="sandbox-badge-row">
+        <span class="sandbox-badge">MODO PRUEBA (SANDBOX)</span>
+        <button class="sandbox-help-link" (click)="showTestCredentialsModal.set(true)" type="button">
+          Ver cuentas de prueba ↗
+        </button>
+      </div>
+      <p class="sandbox-desc">
+        Pasarela Mercado Pago activa. Paga con el usuario comprador o tarjetas de prueba sin cargos reales.
+      </p>
+    </div>
+
+    <!-- Lista de Productos en el Carrito -->
+    <div class="cart-drawer-items">
+      @if (cartItems().length === 0) {
+      <div class="cart-empty-view">
+        <div class="cart-empty-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <h4>Tu carrito está vacío</h4>
+        <p>Aún no has agregado productos a tu carrito. ¡Explora los modelos exclusivos de UrbanStyle!</p>
+        <button class="btn-browse-catalog" (click)="closeCart()">
+          Explorar Catálogo
+        </button>
+      </div>
+      } @else {
+      <div class="cart-products-scroll">
+        @for (item of cartItems(); track item.product.id) {
+        <div class="cart-card-item">
+          <div class="cart-item-img-wrap">
+            <img [src]="item.product.image" [alt]="item.product.name" class="cart-item-img">
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-brand-row">
+              <span class="cart-brand-tag">{{ item.product.brand }}</span>
+              <button class="cart-remove-btn" (click)="removeFromCart(item.product.id)" title="Eliminar este ítem"
+                aria-label="Eliminar producto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </button>
+            </div>
+            <h4 class="cart-product-title">{{ item.product.name }}</h4>
+            <div class="cart-item-price-unit">${{ item.product.price | number:'1.0-0' }} COP c/u</div>
+
+            <div class="cart-item-action-row">
+              <div class="cart-stepper">
+                <button class="stepper-btn" (click)="updateQuantity(item.product.id, -1)" title="Reducir cantidad"
+                  [disabled]="item.quantity <= 1">−</button>
+                <span class="stepper-val">{{ item.quantity }}</span>
+                <button class="stepper-btn" (click)="updateQuantity(item.product.id, 1)"
+                  title="Aumentar cantidad">+</button>
+              </div>
+              <div class="cart-item-total-price">
+                ${{ (item.product.price * item.quantity) | number:'1.0-0' }} COP
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <!-- Resumen y Pasarela de Pago -->
+    @if (cartItems().length > 0) {
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-block">
+        <div class="summary-line">
+          <span>Subtotal ({{ cartTotalCount() }} {{ cartTotalCount() === 1 ? 'ítem' : 'ítems' }})</span>
+          <span>${{ cartSubtotal() | number:'1.0-0' }} COP</span>
+        </div>
+        <div class="summary-line">
+          <span>Envío nacional</span>
+          <span class="free-badge">GRATIS</span>
+        </div>
+        <div class="summary-line total-highlight">
+          <span>Total a Pagar</span>
+          <span class="total-price">${{ cartSubtotal() | number:'1.0-0' }} COP</span>
+        </div>
+      </div>
+
+      @if (checkoutError()) {
+      <div class="checkout-error-card">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>{{ checkoutError() }}</span>
+      </div>
+      }
+
+      <!-- Botón Pagar con Mercado Pago -->
+      <button class="btn-checkout-mercadopago" (click)="payWithMercadoPago()" [disabled]="isCheckingOut()"
+        type="button">
+        @if (isCheckingOut()) {
+        <span class="spinner-circle"></span>
+        <span>Conectando con Mercado Pago...</span>
+        } @else {
+        <div class="mp-button-content">
+          <svg class="mp-logo-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+          </svg>
+          <div class="mp-button-text">
+            <span class="mp-action-title">Pagar con Mercado Pago</span>
+            <span class="mp-action-sub">Sandbox · Tarjetas o cuenta de prueba</span>
+          </div>
+        </div>
+        }
+      </button>
+
+      <div class="cart-secondary-actions">
+        <button class="btn-clear-cart-link" (click)="clearCart()" type="button">
+          Vaciar Carrito
+        </button>
+        <button class="btn-wsp-order-cart" (click)="sendWhatsAppCartOrder()" type="button">
+          Pedir por WhatsApp
+        </button>
+      </div>
+    </div>
+    }
+  </aside>
+</div>
+
+<!-- ==========================================
+     FLOATING CART BUTTON (ACCESO RÁPIDO)
+     ========================================== -->
+<button class="floating-cart-widget" (click)="toggleCart()" aria-label="Ver Carrito de Compras"
+  [class.has-badge]="cartTotalCount() > 0" title="Ver Carrito de Compras">
+  <div class="floating-cart-badge">{{ cartTotalCount() }}</div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"></circle>
+    <circle cx="20" cy="21" r="1"></circle>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+  </svg>
+  <span class="floating-cart-text">Carrito</span>
+</button>
+
+<!-- ==========================================
+     MODAL DE CUENTAS Y TARJETAS DE PRUEBA MERCADO PAGO
+     ========================================== -->
+<div class="modal-overlay" [class.open]="showTestCredentialsModal()" (click)="showTestCredentialsModal.set(false)">
+  <div class="modal-container test-credentials-modal" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="showTestCredentialsModal.set(false)" aria-label="Cerrar modal">✕</button>
+
+    <div class="credentials-header">
+      <div class="credentials-badge">MERCADO PAGO SANDBOX</div>
+      <h2>Credenciales y Tarjetas de Prueba</h2>
+      <p>Utiliza estos datos en la pantalla de Mercado Pago Sandbox para simular el pago de prueba exitosamente.</p>
+    </div>
+
+    <!-- Guía paso a paso según la guía del usuario -->
+    <div class="steps-flow-card">
+      <div class="step-item">
+        <span class="step-num">1</span>
+        <span>Haz clic en <strong>"Pagar con Mercado Pago"</strong></span>
+      </div>
+      <div class="step-item">
+        <span class="step-num">2</span>
+        <span>En la pasarela de Mercado Pago, haz clic en <strong>"Ingresar con mi cuenta"</strong></span>
+      </div>
+      <div class="step-item">
+        <span class="step-num">3</span>
+        <span>Ingresa el usuario de prueba y la contraseña indicados abajo</span>
+      </div>
+      <div class="step-item">
+        <span class="step-num">4</span>
+        <span>Selecciona las cuotas, haz clic en <strong>"Pagar"</strong> y luego en <strong>"Ver
+            comprobante"</strong></span>
+      </div>
+    </div>
+
+    <!-- Usuario y Contraseña de Prueba -->
+    <div class="credentials-section">
+      <h3 class="section-title">👤 Cuenta de Usuario Comprador</h3>
+      <div class="credentials-grid">
+        <div class="credential-box">
+          <span class="cred-label">Usuario de Prueba</span>
+          <div class="cred-row">
+            <span class="cred-value">{{ testUser }}</span>
+            <button class="btn-copy-cred" (click)="copyToClipboard(testUser, 'user')" type="button">
+              {{ copiedField() === 'user' ? '✓ Copiado' : 'Copiar' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="credential-box">
+          <span class="cred-label">Contraseña</span>
+          <div class="cred-row">
+            <span class="cred-value">{{ testPass }}</span>
+            <button class="btn-copy-cred" (click)="copyToClipboard(testPass, 'pass')" type="button">
+              {{ copiedField() === 'pass' ? '✓ Copiado' : 'Copiar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas de Prueba -->
+    <div class="credentials-section">
+      <h3 class="section-title">💳 Tarjetas de Prueba Disponibles</h3>
+      <div class="cards-table-wrapper">
+        <table class="test-cards-table">
+          <thead>
+            <tr>
+              <th>Tarjeta</th>
+              <th>Número</th>
+              <th>CVV</th>
+              <th>Vencimiento</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (card of testCards; track card.brand) {
+            <tr>
+              <td><strong>{{ card.brand }}</strong></td>
+              <td><code>{{ card.number }}</code></td>
+              <td><code>{{ card.cvv }}</code></td>
+              <td><code>{{ card.exp }}</code></td>
+              <td>
+                <button class="btn-copy-table" (click)="copyToClipboard(card.number.replace(' ', ''), card.brand)"
+                  type="button">
+                  {{ copiedField() === card.brand ? '✓ Copiado' : 'Copiar Número' }}
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="credentials-footer">
+      <button class="btn-start-checkout-modal" (click)="showTestCredentialsModal.set(false); payWithMercadoPago()"
+        type="button">
+        Ir a Pagar con Mercado Pago →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODAL DE PAGO CONFIRMADO (RETORNO DE MERCADO PAGO)
+     ========================================== -->
+@if (paymentNotification(); as notif) {
+<div class="modal-overlay open" (click)="closePaymentNotification()">
+  <div class="modal-container payment-result-modal" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closePaymentNotification()" aria-label="Cerrar modal">✕</button>
+
+    @if (notif.status === 'approved') {
+    <div class="result-icon-circle success">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <div class="result-badge-pill success">PAGO APROBADO EN SANDBOX</div>
+    <h2>¡Pago Realizado con Éxito!</h2>
+    <p>Tu compra en <strong>UrbanStyle</strong> ha sido procesada de manera exitosa a través de Mercado Pago.</p>
+    @if (notif.id) {
+    <div class="payment-id-tag">ID de Transacción: #{{ notif.id }}</div>
+    }
+    <div class="payment-result-box">
+      <div class="result-detail-line">
+        <span>Estado:</span>
+        <span class="status-green">Aprobado / Acreditado</span>
+      </div>
+      <div class="result-detail-line">
+        <span>Comprobante:</span>
+        <span>Generado en Mercado Pago</span>
+      </div>
+      <div class="result-detail-line">
+        <span>Entrega:</span>
+        <span>Despacho prioritario activo</span>
+      </div>
+    </div>
+    <button class="btn-continue-shopping" (click)="closePaymentNotification()">
+      Seguir Explorando el Catálogo
+    </button>
+    } @else if (notif.status === 'pending') {
+    <div class="result-icon-circle pending">⏳</div>
+    <h2>Pago Pendiente de Confirmación</h2>
+    <p>Tu pago está en proceso de revisión por parte de Mercado Pago.</p>
+    <button class="btn-continue-shopping" (click)="closePaymentNotification()">
+      Entendido
+    </button>
+    } @else {
+    <div class="result-icon-circle error">✕</div>
+    <h2>Pago no completado</h2>
+    <p>El proceso de pago fue cancelado o rechazado. Puedes intentarlo nuevamente con otra tarjeta o medio de pago.</p>
+    <button class="btn-continue-shopping" (click)="closePaymentNotification(); openCart()">
+      Reintentar desde el Carrito
+    </button>
+    }
+  </div>
+</div>
+}
+
+<!-- ==========================================
+     TOAST NOTIFICATION FLOTANTE
+     ========================================== -->
+@if (toastMessage(); as msg) {
+<div class="toast-notification animate-bounce-in">
+  <span>{{ msg }}</span>
+</div>
+}
