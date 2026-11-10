@@ -3,17 +3,17 @@ import { Product } from './shoes';
 export const SHIRTS: Product[] = [
   {
     id: 1001,
-    name: 'Camiseta Oversize Streetwear Black',
+    name: 'Camisa Manga Corta Streetwear Black',
     brand: 'UrbanStyle',
     category: 'Shirt',
     price: 65000,
     rating: 4.9,
     reviewsCount: 34,
-    description: 'Camiseta de corte oversize con confección en 100% algodón de alto gramaje (240g). Estilo urbano exclusivo con cuello redondo reforzado.',
+    description: 'Camisa casual de manga corta con cuello camisero y botones frontales. Confección en algodón premium suave, corte holgado ideal para estilo streetwear moderno.',
     sizes: [38, 40, 42, 44],
     colors: [
       { name: 'Negro Profundo', value: '#111827' },
-      { name: 'Blanco Hielo', value: '#F8FAFC' }
+      { name: 'Gris Oscuro', value: '#1F2937' }
     ],
     image: 'products/shirt_1.jpg',
     images: ['products/shirt_1.jpg'],
@@ -75,17 +75,17 @@ export const SHIRTS: Product[] = [
   },
   {
     id: 1005,
-    name: 'Camiseta Heavyweight Vintage Edition',
-    brand: 'Nike Casual',
+    name: 'Camiseta Graphic USA Eagle Vintage',
+    brand: 'UrbanStyle',
     category: 'Shirt',
     price: 78000,
     rating: 4.8,
     reviewsCount: 41,
-    description: 'Camiseta boxy fit con lavado vintage suave al tacto. Tejido preencogido ultra duradero que mantiene su forma y textura con el tiempo.',
+    description: 'Camiseta boxy fit con imponente estampado gráfico retro USA Eagle serigrafiado en alta definición. Lavado vintage suave al tacto y cuello acanalado reforzado.',
     sizes: [38, 40, 42, 44],
     colors: [
-      { name: 'Gris Asfalto', value: '#475569' },
-      { name: 'Blanco Antiguo', value: '#F1F5F9' }
+      { name: 'Negro Vintage', value: '#1E293B' },
+      { name: 'Gris Asfalto', value: '#475569' }
     ],
     image: 'products/shirt_5.jpg',
     images: ['products/shirt_5.jpg'],
